@@ -22,6 +22,10 @@ class JaegerDbalExtension extends Extension
         switch ($config['type']) {
             case 'wrapper':
                 $container->removeDefinition('doctrine.dbal.connection_factory.decorator.jaeger');
+                $container->setAlias(
+                    'doctrine.dbal.connection_factory',
+                    'doctrine.dbal.connection_factory.wrapper.jaeger'
+                );
                 break;
             case 'decorator':
                 $container->removeDefinition('doctrine.dbal.connection_factory.wrapper.jaeger');
