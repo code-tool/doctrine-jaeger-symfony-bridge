@@ -1,0 +1,5 @@
+services:
+  doctrine.dbal.connection_factory.jaeger:
+    class: Doctrine\DBAL\Jaeger\Decorator\JaegerConnectionFactoryDecorator
+    decorates: doctrine.dbal.connection_factory
+    arguments: ['@doctrine.dbal.connection_factory.jaeger.inner', '@jaeger.tracer']
