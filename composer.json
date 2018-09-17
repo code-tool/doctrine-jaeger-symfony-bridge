@@ -3,7 +3,7 @@
   "license": "MIT",
   "require": {
     "php": "^7.2",
-    "code-tool/doctrine-dbal-jaeger": "dev-master",
+    "code-tool/doctrine-dbal-jaeger": "^1",
     "doctrine/doctrine-bundle": "^1.9",
     "symfony/event-dispatcher": "^2.6 || ^3.4 || ^4",
     "symfony/console": "^2.6 || ^3.4 || ^4",
