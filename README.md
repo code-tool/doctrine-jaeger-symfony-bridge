@@ -1,4 +1,4 @@
-# Symfony Bridge for Dcotrine Jaeger library
+# Symfony Bridge for Doсtrine Jaeger library
 
 ## Getting started
 Register bundle with your kernel:
