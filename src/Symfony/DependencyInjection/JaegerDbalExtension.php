@@ -12,10 +12,22 @@ class JaegerDbalExtension extends Extension
 {
     public function load(array $configs, ContainerBuilder $container)
     {
+        $configuration = $this->getConfiguration($configs, $container);
+        $config = $this->processConfiguration($configuration, $configs);
         $loader = new YamlFileLoader(
             $container,
             new FileLocator(__DIR__ . '/../Resources/config')
         );
         $loader->load('services.yaml');
+        switch ($config['type']) {
+            case 'wrapper':
+                $container->removeDefinition('doctrine.dbal.connection_factory.decorator.jaeger');
+                break;
+            case 'decorator':
+                $container->removeDefinition('doctrine.dbal.connection_factory.wrapper.jaeger');
+                break;
+            default:
+                break;
+        }
     }
 }
