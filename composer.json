@@ -1,0 +1,26 @@
+{
+  "name": "code-tool/doctrine-jaeger-symfony-bridge",
+  "license": "MIT",
+  "require": {
+    "php": "^7.2",
+    "code-tool/doctrine-dbal-jaeger": "^2.15",
+    "symfony/event-dispatcher": "^2.6 || ^3.4 || ^4",
+    "symfony/console": "^2.6 || ^3.4 || ^4",
+    "symfony/config": "^2.6 || ^3.4 || ^4",
+    "symfony/http-kernel": "^2.6 || ^3.4 || ^4",
+    "symfony/dependency-injection": "^2.6 || ^3.4 || ^4"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7.2"
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "autoload": {
+    "psr-4": {
+      "Doctrine\\DBAL\\Jaeger\\": "src/"
+    }
+  },
+  "prefer-stable": true,
+  "minimum-stability": "dev"
+}
