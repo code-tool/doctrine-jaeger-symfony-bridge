@@ -2,28 +2,34 @@
 
 ## Getting started
 Register bundle with your kernel:
-```$xslt
-config/bundles.php
-...
-\Doctrine\DBAL\Jaeger\Symfony\DependencyInjection\JaegerDbalBundle::class => ['all' => true],
-...
+```php
+// config/bundles.php
+return [
+    // ...
+    \Doctrine\DBAL\Jaeger\Symfony\DependencyInjection\JaegerDbalBundle::class => ['all' => true],
+    // ...
+];
 ```
 OR
 
-```$xslt
-app/Kernel.php::registerBundles()
+```php
+// app/AppKernel.php
+class AppKernel extends Kernel
+{
+    public function registerBundles()
     {
         $bundles = [
-            ...
-            new \Doctrine\DBAL\Jaeger\Symfony\DependencyInjection\JaegerDbalBundle()
-            ...
-        ];    
-            
-        return $bundles;
+            // ...
+            new \Doctrine\DBAL\Jaeger\Symfony\DependencyInjection\JaegerDbalBundle(),
+        ];
+
+        // ...
     }
+}
 ```
+
 Add wrapper class definition in doctrine configuration
-```$xslt
+```yaml
 doctrine:
   dbal:
     connections:
