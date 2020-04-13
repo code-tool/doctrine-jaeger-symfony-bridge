@@ -18,6 +18,8 @@ class JaegerConnectionFactoryDecorator extends ConnectionFactory
     {
         $this->connectionFactory = $connectionFactory;
         $this->tracer = $tracer;
+
+        parent::__construct([]);
     }
 
     public function createConnection(
@@ -27,12 +29,13 @@ class JaegerConnectionFactoryDecorator extends ConnectionFactory
         array $mappingTypes = []
     ) {
         return new JaegerConnectionDecorator(
-            parent::createConnection(
+            $this->connectionFactory->createConnection(
                 $params,
                 $config,
                 $eventManager,
                 $mappingTypes
-            ), $this->tracer
+            ),
+            $this->tracer
         );
     }
 }
