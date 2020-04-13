@@ -12,9 +12,10 @@ class JaegerConnectionWrapperFactory extends ConnectionFactory
 {
     private $tracer;
 
-    public function __construct($typesConfig, TracerInterface $tracer)
+    public function __construct(array $typesConfig, TracerInterface $tracer)
     {
         $this->tracer = $tracer;
+
         parent::__construct($typesConfig);
     }
 
