@@ -14,10 +14,16 @@ class JaegerConnectionFactoryDecorator extends ConnectionFactory
 
     private $tracer;
 
-    public function __construct(ConnectionFactory $connectionFactory, TracerInterface $tracer)
+    /**
+     * @var int|null
+     */
+    private $maxSqlLength;
+
+    public function __construct(ConnectionFactory $connectionFactory, TracerInterface $tracer, ?int $maxSqlLength = null)
     {
         $this->connectionFactory = $connectionFactory;
         $this->tracer = $tracer;
+        $this->maxSqlLength = $maxSqlLength;
 
         parent::__construct([]);
     }
@@ -35,7 +41,8 @@ class JaegerConnectionFactoryDecorator extends ConnectionFactory
                 $eventManager,
                 $mappingTypes
             ),
-            $this->tracer
+            $this->tracer,
+            $this->maxSqlLength
         );
     }
 }
