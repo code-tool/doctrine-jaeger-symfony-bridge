@@ -1,8 +1,11 @@
+parameters:
+  env(JAEGER_DOCTRINE_MAX_SQL_LENGTH): null
+
 services:
   doctrine.dbal.connection_factory.decorator.jaeger:
     class: Doctrine\DBAL\Jaeger\Decorator\JaegerConnectionFactoryDecorator
     decorates: doctrine.dbal.connection_factory
-    arguments: ['@doctrine.dbal.connection_factory.decorator.jaeger.inner', '@jaeger.tracer']
+    arguments: ['@doctrine.dbal.connection_factory.decorator.jaeger.inner', '@jaeger.tracer', '%env(JAEGER_DOCTRINE_MAX_SQL_LENGTH)%']
   doctrine.dbal.connection_factory.wrapper.jaeger:
     class: Doctrine\DBAL\Jaeger\Wrapper\JaegerConnectionWrapperFactory
-    arguments: ['%doctrine.dbal.connection_factory.types%', '@jaeger.tracer']
+    arguments: ['%doctrine.dbal.connection_factory.types%', '@jaeger.tracer', '%env(JAEGER_DOCTRINE_MAX_SQL_LENGTH)%']
