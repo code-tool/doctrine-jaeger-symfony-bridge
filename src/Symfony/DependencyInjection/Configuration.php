@@ -11,16 +11,13 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('dbal_jaeger');
-        if (true === \method_exists($treeBuilder, 'getRootNode')) {
-            $rootNode = $treeBuilder->getRootNode();
-        } else {
-            $rootNode = $treeBuilder->root('dbal_jaeger', 'array');
-        }
 
-        $rootNode
+        // @formatter:off
+        $treeBuilder->getRootNode()
             ->children()
                 ->scalarNode('type')->defaultValue('wrapper')->end()
             ->end();
+        // @formatter:on
 
         return $treeBuilder;
     }
